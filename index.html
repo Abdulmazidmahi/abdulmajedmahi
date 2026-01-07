@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Abdul Majed Mahi</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Abdul Majed Mahi - Student, creative mind, technology enthusiast from Bangladesh.">
+    <meta name="keywords" content="Abdul Majed Mahi, Abdul Mazid Mahi, Portfolio, Student, Bangladesh">
+    <meta name="author" content="Abdul Majed Mahi">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Abdul Majed Mahi">
+    <meta property="og:description" content="Student | Creative Mind | Future Visionary">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --accent-color: #6e07b8;
+            --card-bg: #f4f4f4;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: 0.3s;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            background: var(--bg-color);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 20px;
+            color: var(--text-color);
+        }
+
+        section {
+            padding: 100px 20px;
+        }
+
+        #home {
+            height: 100vh;
+            background: linear-gradient(135deg, #6e07b8, #9d4edd);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 4px;
+            top: 0;
+            bottom: 0;
+            background: var(--accent-color);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) { left: 0; }
+        .timeline-item:nth-child(even) { left: 50%; }
+
+        .timeline-item::before {
+            content: '';
+            width: 18px;
+            height: 18px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            position: absolute;
+            top: 25px;
+            right: -9px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -9px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border: none;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            background: var(--accent-color);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn {
+            display: block;
+            text-align: center;
+            margin: 25px auto;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .whatsapp { background: #25D366; }
+        .cv { background: #6e07b8; }
+
+        .social {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .social a {
+            font-size: 2rem;
+            margin: 0 15px;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px;
+            }
+            .timeline-item::before { left: 10px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Abdul Majed Mahi</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+            <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+</header>
+
+<section id="home">
+    <div>
+        <h1>Abdul Majed Mahi</h1>
+        <p>Student | Creative Mind | Future Visionary</p>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="card">
+            <p>
+                I am Abdul Mazid Mahi, a creative mind passionate about technology,
+                design, and storytelling. I love turning ideas into reality.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="education">
+    <div class="container">
+        <h2>Education</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Sompara High School</h3>
+                <p>SSC</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Sompara College</h3>
+                <p>HSC (Ongoing)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <h2>Contact Me</h2>
+
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+
+        <a href="cv.pdf" download class="btn cv">
+            <i class="fas fa-download"></i> Download CV
+        </a>
+
+        <a href="https://wa.me/8801830266779" target="_blank" class="btn whatsapp">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+
+        <div class="social">
+            <a href="https://www.facebook.com/share/1GQmiKTa3p/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/abdulmajedmahi" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:abdulmajedmahi@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</section>
+
+<script>
+    const toggle = document.querySelector('.theme-toggle');
+    const icon = toggle.querySelector('i');
+
+    toggle.addEventListener('click', () => {
+        const html = document.documentElement;
+        const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', theme);
+        icon.classList.toggle('fa-moon');
+        icon.classList.toggle('fa-sun');
+    });
+</script>
+
+</body>
+</html>

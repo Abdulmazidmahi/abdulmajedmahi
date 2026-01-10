@@ -1,309 +1,294 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Abdul Majed Mahi</title>
-
-    <!-- SEO -->
-    <meta name="description" content="Abdul Majed Mahi - Student, creative mind, technology enthusiast from Bangladesh.">
-    <meta name="keywords" content="Abdul Majed Mahi, Abdul Mazid Mahi, Portfolio, Student, Bangladesh">
-    <meta name="author" content="Abdul Majed Mahi">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Abdul Majed Mahi">
-    <meta property="og:description" content="Student | Creative Mind | Future Visionary">
-    <meta property="og:type" content="website">
-
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Abdul Majed Mahi | Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
 
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #333;
-            --accent-color: #6e07b8;
-            --card-bg: #f4f4f4;
-            --shadow: 0 4px 20px rgba(0,0,0,0.1);
+            --gold: #e2b842;
+            --gold-glow: rgba(226, 184, 66, 0.3);
+            --bg: #050810;
+            --card: rgba(15, 23, 42, 0.6);
+            --text: #f8fafc;
+            --sub-text: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #e2b842 0%, #9e7e2a 100%);
+            --nav-bg: rgba(5, 8, 16, 0.85);
         }
 
-        [data-theme="dark"] {
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --card-bg: #1e1e1e;
+        [data-theme="light"] {
+            --bg: #f1f5f9;
+            --card: rgba(255, 255, 255, 0.8);
+            --text: #0f172a;
+            --sub-text: #475569;
+            --nav-bg: rgba(241, 245, 249, 0.85);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: auto; }
+        ::-webkit-scrollbar { width: 0px; } 
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
-            transition: 0.3s;
-        }
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            transition: background 0.4s, color 0.4s;
+        } 
 
-        header {
-            position: fixed;
-            width: 100%;
-            background: var(--bg-color);
-            box-shadow: var(--shadow);
-            z-index: 1000;
+        /* --- FOOTBALL DRAG SCROLLBAR --- */
+        .scroll-control-container {
+            position: fixed; right: 30px; top: 15%; height: 70%; width: 60px;
+            display: flex; flex-direction: column; align-items: center;
+            z-index: 9999;
         }
+        .scroll-track {
+            position: absolute; width: 4px; height: 100%;
+            background: rgba(226, 184, 66, 0.2); left: 50%; transform: translateX(-50%);
+            border-radius: 10px;
+        }
+        #moving-football {
+            position: absolute; font-size: 45px; width: 60px; height: 60px;
+            display: flex; align-items: center; justify-content: center;
+            left: 50%; top: 0%; transform: translate(-50%, -50%);
+            cursor: grab;
+            filter: drop-shadow(0 0 15px var(--gold-glow));
+            user-select: none; z-index: 10000;
+        }
+        #moving-football:active { cursor: grabbing; scale: 0.9; }
 
+        /* --- NAVIGATION & THEME TOGGLE --- */
         nav {
-            max-width: 1100px;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
+            position: fixed; top: 0; width: 100%; padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--nav-bg); backdrop-filter: blur(15px);
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-right { display: flex; align-items: center; gap: 30px; }
+        .logo { font-family: 'Playfair Display'; font-weight: 900; color: var(--gold); font-size: 1.5rem; letter-spacing: 2px; }
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: 0.3s; margin-right: 20px;}
+        
+        #theme-toggle {
+            background: var(--card); border: 1px solid var(--gold); color: var(--gold);
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--accent-color);
-        }
+        /* --- ALL OTHER SECTIONS --- */
+        header { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px; position: relative; }
+        .hero-container { display: flex; align-items: center; max-width: 1200px; gap: 60px; flex-wrap: wrap; justify-content: center; } 
+        .main-img-container { width: 350px; height: 450px; border-radius: 30px; overflow: hidden; border: 1px solid rgba(226, 184, 66, 0.3); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); } 
+        #mainImg { transition: opacity 0.5s ease-in-out; } /* Smooth image transition */
+        .thumb-nav img { width: 50px; height: 50px; border-radius: 10px; cursor: pointer; opacity: 0.5; transition: 0.3s; object-fit: cover; }
+        .thumb-nav img.active { opacity: 1; border-color: var(--gold); transform: translateY(-3px); } 
 
-        .nav-links a {
-            margin-left: 25px;
-            text-decoration: none;
-            color: var(--text-color);
-        }
+        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 20px; }
+        .highlight { color: var(--gold); }
+        .hero-sub { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; } 
 
-        .theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-left: 20px;
-            color: var(--text-color);
-        }
+        section { padding: 80px 20px; max-width: 1200px; margin: auto; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; }
+        .card { background: var(--card); backdrop-filter: blur(12px); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
+        .card:hover { border-color: var(--gold); transform: translateY(-5px); } 
 
-        section {
-            padding: 100px 20px;
-        }
+        .skills-container { display: flex; flex-wrap: wrap; gap: 15px; }
+        .tag { padding: 12px 24px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); font-weight: 600; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .tag:hover { background: var(--accent-gradient); color: #000; transform: scale(1.1) rotate(3deg); box-shadow: 0 10px 20px var(--gold-glow); } 
 
-        #home {
-            height: 100vh;
-            background: linear-gradient(135deg, #6e07b8, #9d4edd);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-        }
+        .social-big a { color: var(--text); font-size: 1.5rem; transition: 0.4s; background: rgba(255,255,255,0.05); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; text-decoration: none; }
+        .social-big a:hover { color: var(--gold); transform: scale(1.1); background: rgba(226, 184, 66, 0.1); }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 30px; border-radius: 50px; font-weight: 800; text-decoration: none; transition: 0.4s; background: var(--accent-gradient); color: #000; }
 
-        h1 { font-size: 3.5rem; }
-        h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--accent-color);
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 700px;
-            margin: auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            width: 4px;
-            top: 0;
-            bottom: 0;
-            background: var(--accent-color);
-        }
-
-        .timeline-item {
-            width: 50%;
-            padding: 20px 40px;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) { left: 0; }
-        .timeline-item:nth-child(even) { left: 50%; }
-
-        .timeline-item::before {
-            content: '';
-            width: 18px;
-            height: 18px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            position: absolute;
-            top: 25px;
-            right: -9px;
-        }
-
-        .timeline-item:nth-child(even)::before {
-            left: -9px;
-        }
-
-        form {
-            max-width: 500px;
-            margin: auto;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 12px 0;
-            border-radius: 8px;
-            border: none;
-            background: var(--card-bg);
-            color: var(--text-color);
-        }
-
-        button {
-            padding: 12px 25px;
-            border: none;
-            background: var(--accent-color);
-            color: #fff;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .btn {
-            display: block;
-            text-align: center;
-            margin: 25px auto;
-            padding: 14px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #fff;
-        }
-
-        .whatsapp { background: #25D366; }
-        .cv { background: #6e07b8; }
-
-        .social {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .social a {
-            font-size: 2rem;
-            margin: 0 15px;
-            color: var(--text-color);
-        }
-
-        @media (max-width: 768px) {
-            .timeline::before { left: 20px; }
-            .timeline-item {
-                width: 100%;
-                left: 0 !important;
-                padding-left: 60px;
-            }
-            .timeline-item::before { left: 10px; }
+        @media(max-width: 900px) {
+            .hero-container { text-align: center; }
+            .nav-links { display: none; }
+            .scroll-control-container { right: 10px; }
         }
     </style>
 </head>
+<body data-theme="dark"> 
 
-<body>
+<div id="scroll-progress" style="position: fixed; top: 0; left: 0; height: 4px; background: var(--accent-gradient); z-index: 1001; width: 0%;"></div> 
 
-<header>
-    <nav>
-        <div class="logo">Abdul Majed Mahi</div>
+<div class="scroll-control-container" id="scroll-track-container">
+    <div class="scroll-track"></div>
+    <div id="moving-football">⚽</div>
+</div> 
+
+<nav>
+    <div class="logo">AM. MAHI</div>
+    <div class="nav-right">
         <div class="nav-links">
-            <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
-            <button class="theme-toggle"><i class="fas fa-moon"></i></button>
         </div>
-    </nav>
-</header>
-
-<section id="home">
-    <div>
-        <h1>Abdul Majed Mahi</h1>
-        <p>Student | Creative Mind | Future Visionary</p>
+        <button id="theme-toggle"><i class="fas fa-moon"></i></button>
     </div>
-</section>
+</nav> 
 
-<section id="about">
-    <div class="container">
-        <h2>About Me</h2>
-        <div class="card">
-            <p>
-                I am Abdul Mazid Mahi, a creative mind passionate about technology,
-                design, and storytelling. I love turning ideas into reality.
-            </p>
-        </div>
-    </div>
-</section>
-
-<section id="education">
-    <div class="container">
-        <h2>Education</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>Sompara High School</h3>
-                <p>SSC</p>
+<header>
+    <div class="hero-container">
+        <div class="profile-wrapper" data-aos="fade-right">
+            <div class="main-img-container">
+                <img id="mainImg" src="https://i.postimg.cc/Xvr5QRbc/FB-IMG-1768038023434.jpg" style="width:100%; height:100%; object-fit:cover;">
             </div>
-            <div class="timeline-item">
-                <h3>Sompara College</h3>
-                <p>HSC (Ongoing)</p>
+            <div class="thumb-nav" style="margin-top:20px; display:flex; gap:10px; justify-content:center;">
+                <img src="https://i.postimg.cc/Xvr5QRbc/FB-IMG-1768038023434.jpg" class="active" onclick="manualChangeImg(0)">
+                <img src="https://i.postimg.cc/tCDVyqRP/20251225-230231(1).jpg" onclick="manualChangeImg(1)">
+                <img src="https://i.postimg.cc/90bzWbhs/20251226200902(1).jpg" onclick="manualChangeImg(2)">
+                <img src="https://i.postimg.cc/sD0DwvDM/20250906-165420.jpg" onclick="manualChangeImg(3)">
+                <img src="https://i.postimg.cc/WbKT0CX8/IMG-6437.jpg" onclick="manualChangeImg(4)">
             </div>
+        </div> 
+        <div class="hero-content" data-aos="fade-left">
+            <p class="hero-sub">Web Designer | Video Creator</p>
+            <h1>Abdul Majed <span class="highlight">Mahi</span></h1>
+            <p style="color: var(--sub-text); margin-bottom: 20px;">Motivated student and creative individual with a strong interest in technology, design, and digital media.</p>
+            <div class="social-big" style="display:flex; gap:15px;">
+                <a href="https://www.linkedin.com/in/abdul-majed-mahi-679129382" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/abdulmajedmahi" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/abdulmajedmahi" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://x.com/abdulmazidmahi" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            </div> 
+            <div style="margin-top: 30px;"><a href="https://wa.me/8801830266779" target="_blank" class="btn">WhatsApp Me</a></div>
         </div>
+    </div>
+</header> 
+
+<section id="about" data-aos="fade-up">
+    <h2 class="section-title">Career <span class="highlight">Objective</span></h2>
+    <div class="card"><p style="color: var(--sub-text);">I aim to grow my skills, gain real-world experience, and build a successful career through continuous learning and creativity.</p></div>
+</section> 
+
+<section id="education" data-aos="fade-up">
+    <h2 class="section-title">Education <span class="highlight">History</span></h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div class="card"><h4 class="highlight">HSC (Ongoing)</h4><p>Sompara College</p></div>
+        <div class="card"><h4 class="highlight">SSC</h4><p>Sompara High School</p></div>
     </div>
 </section>
 
-<section id="contact">
-    <div class="container">
-        <h2>Contact Me</h2>
-
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea rows="5" placeholder="Your Message"></textarea>
-            <button type="submit">Send</button>
-        </form>
-
-        <a href="cv.pdf" download class="btn cv">
-            <i class="fas fa-download"></i> Download CV
-        </a>
-
-        <a href="https://wa.me/8801830266779" target="_blank" class="btn whatsapp">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-        </a>
-
-        <div class="social">
-            <a href="https://www.facebook.com/share/1GQmiKTa3p/" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/abdulmajedmahi" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="mailto:abdulmajedmahi@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
+<section id="skills" data-aos="zoom-in">
+    <h2 class="section-title">My <span class="highlight">Skills</span></h2>
+    <div class="skills-container">
+        <div class="tag">Web Design</div><div class="tag">Video Editing</div><div class="tag">HTML & CSS</div><div class="tag">Creative Thinking</div><div class="tag">Facebook Reels</div>
     </div>
 </section>
 
+<section id="contact" style="text-align: center;" data-aos="fade-up">
+    <h2 class="section-title">Contact <span class="highlight">Me</span></h2>
+    <div class="card" style="max-width: 500px; margin: auto;"><p>Email: abdulmajedmahi@gmail.com</p><p>Phone: 01830266779</p></div>
+</section>
+
+<footer style="padding: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+    <p style="color: var(--sub-text); font-size: 0.8rem;">&copy; 2026 Abdul Majed Mahi</p>
+</footer> 
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    const toggle = document.querySelector('.theme-toggle');
-    const icon = toggle.querySelector('i');
+    AOS.init({ duration: 1000, once: true }); 
 
-    toggle.addEventListener('click', () => {
-        const html = document.documentElement;
-        const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', theme);
-        icon.classList.toggle('fa-moon');
-        icon.classList.toggle('fa-sun');
+    // --- THEME TOGGLE ---
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.body.getAttribute('data-theme') === 'dark';
+        document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        themeToggle.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
     });
-</script>
+
+    // --- DRAG TO SCROLL LOGIC ---
+    const football = document.getElementById('moving-football');
+    const trackContainer = document.getElementById('scroll-track-container');
+    const progressBar = document.getElementById('scroll-progress');
+    let isDragging = false;
+
+    function updatePageOnScroll() {
+        if (!isDragging) {
+            let scrollTop = window.scrollY;
+            let docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            let scrollPercent = (scrollTop / docHeight) * 100;
+            football.style.top = scrollPercent + "%";
+            progressBar.style.width = scrollPercent + "%";
+            football.style.transform = `translate(-50%, -50%) rotate(${scrollTop * 0.5}deg)`;
+        }
+    }
+
+    window.addEventListener('scroll', updatePageOnScroll);
+
+    function handleDrag(clientY) {
+        const rect = trackContainer.getBoundingClientRect();
+        let y = clientY - rect.top;
+        let percent = (y / rect.height) * 100;
+        percent = Math.max(0, Math.min(percent, 100));
+
+        let docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        let scrollToY = (percent / 100) * docHeight;
+
+        window.scrollTo(0, scrollToY);
+        football.style.top = percent + "%";
+        progressBar.style.width = percent + "%";
+        football.style.transform = `translate(-50%, -50%) rotate(${scrollToY * 0.5}deg)`;
+    }
+
+    football.addEventListener('mousedown', (e) => { isDragging = true; e.preventDefault(); });
+    window.addEventListener('mousemove', (e) => { if (isDragging) handleDrag(e.clientY); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    football.addEventListener('touchstart', (e) => { isDragging = true; }, {passive: false});
+    window.addEventListener('touchmove', (e) => { if (isDragging) { handleDrag(e.touches[0].clientY); e.preventDefault(); } }, {passive: false});
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    // --- AUTOMATIC PHOTO SLIDER (Every 2 seconds) ---
+    const images = [
+        "https://i.postimg.cc/Xvr5QRbc/FB-IMG-1768038023434.jpg",
+        "https://i.postimg.cc/tCDVyqRP/20251225-230231(1).jpg",
+        "https://i.postimg.cc/90bzWbhs/20251226200902(1).jpg",
+        "https://i.postimg.cc/sD0DwvDM/20250906-165420.jpg",
+        "https://i.postimg.cc/WbKT0CX8/IMG-6437.jpg"
+    ];
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    function changeImg(index) {
+        const mainImg = document.getElementById('mainImg');
+        mainImg.style.opacity = '0.5'; // Simple fade effect start
+        
+        setTimeout(() => {
+            mainImg.src = images[index];
+            mainImg.style.opacity = '1'; // Fade effect end
+            
+            const thumbs = document.querySelectorAll('.thumb-nav img');
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumbs[index].classList.add('active');
+            currentIndex = index;
+        }, 200);
+    }
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            changeImg(currentIndex);
+        }, 2000); // 2000ms = 2 seconds
+    }
+
+    function manualChangeImg(index) {
+        clearInterval(autoSlideInterval); // Stop auto slide when user clicks
+        changeImg(index);
+        startAutoSlide(); // Restart auto slide timer
+    }
+
+    // Initialize auto slide on load
+    window.onload = startAutoSlide;
+
+</script> 
 
 </body>
 </html>
